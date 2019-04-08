@@ -167,3 +167,64 @@ Thread.isAlive()的返回值手段检测到线程已经终止执行
 - 将对象的引用保存到某个正确构造对象的final类型域中
 
 - 将对象的引用保存到一个由锁保护的域中
+
+# 不可变的对象
+
+对象创建以后的状态都是不可变的
+
+对象所有域都是final类型
+
+对象是正确创建的，在对象创建期间，this没有溢出
+
+final:类、方法、变量
+
+- 修饰类：不能被继承
+- 修饰方法：锁定方法不能被继承，效率
+- 修饰变量：基本数据类型变量，引用变量
+
+# 线程封闭
+堆栈封闭：局部变量，无并发问题
+ThreadLocal线程封闭: 特别好的封闭方法
+ThreadLocal内部维护一个Map，key为线程对象，value为保存的值
+数据库连接对应的conection对象
+
+#线程不安全的类
+simpledateformate
+stringbuilder
+hashmap
+hashset
+arraylist
+
+// 先检查后执行，在线程共享的时候应该考虑这个判断的标准是不是线程共享的
+if(condition(a)) {handle(a)}
+# 同步容器主要采用synchronized来实现，并不能保证并发安全
+如果我们使用foreach 和 使用迭代器遍历的同时最好不要执行删除操作。
+这样会导致ConcurrentModificationException
+在找到需要删除的数值我们做好标记就可以了，在循环之后执行删除
+
+# 并发容器 JUC
+ArrayList -> CopyOnWriteArrayList
+
+- 写操作，消耗内存
+- 不能实时性要求
+
+适合读多写少的操作
+
+ConcurrentHashMap
+
+ConcurrentSkipListMap 键是排序的
+
+
+安全共享对象策略
+
+线程限制：一个被线程限制的对象，由线程独占，并且只能被占有它的线程修改
+
+共享只读：一个共享只读对象，在没有额外同步的情况下，可以被多个线程并发访问，但是任何线程都不能修改它
+
+线程安全对象：
+
+被守护的对象：被搜狐的对象只能通过获取特定的锁来访问
+
+# AbstractQueuedSynchronizer AQS
+sync queue
+双向链表
