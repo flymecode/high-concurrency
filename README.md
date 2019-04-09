@@ -228,3 +228,26 @@ ConcurrentSkipListMap 键是排序的
 # AbstractQueuedSynchronizer AQS
 sync queue
 双向链表
+使用Node来实现FIFO队列，可以用来构建锁或者其他的同步容器的基础框架
+利用int来表示状态
+使用方法为继承
+
+子类通过继承并通过实现它的方法管理其状态{acquire 和 release } 的方法操纵状态
+可以同时实现排它锁和共享锁模式（独占，共享）
+
+AQS实现的大致思路：
+AQS内部维护了一个clh队列来管理锁，线程会首先尝试获取锁，如果没有获取到，将该线程和等待信息包装为一个node
+节点，加入到同步队列
+
+AQS组件
+
+CountDownLatch 闭锁
+Semaphore
+CycBarrier 
+ReentrantLock
+Condition
+FutureTask
+
+Condition类，可以分组唤醒需要唤醒的线程
+
+
