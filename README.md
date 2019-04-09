@@ -127,6 +127,7 @@ while(!inited) {
     sleep();
 }
 doSomethingWithConfig(context);
+
 ```
 
 Java内存模型中，允许编译器和处理器对指令进行重排序，但是重排序过程不会影响到单线程程序的执行，却会影响到
@@ -249,5 +250,6 @@ Condition
 FutureTask
 
 Condition类，可以分组唤醒需要唤醒的线程
+
 
 
